@@ -21,11 +21,11 @@ import Javascript from "./index-sections/Javascript.js";
 import Carousel from "./index-sections/Carousel.js";
 import NucleoIcons from "./index-sections/NucleoIcons.js";
 import CompleteExamples from "./index-sections/CompleteExamples.js";
-import SignUp from "./index-sections/SignUp.js";
+import SignUp from "../pages/signup/SignUp.js";
 import Examples from "./index-sections/Examples.js";
 import Download from "./index-sections/Download.js";
 
-function Index() {
+const Index = () => {
   React.useEffect(() => {
     document.body.classList.add("index-page");
     document.body.classList.add("sidebar-collapse");
@@ -54,7 +54,6 @@ function Index() {
           <Carousel />
           <NucleoIcons />
           <CompleteExamples />
-          <SignUp />
           <Examples />
           <Download />
         </div>

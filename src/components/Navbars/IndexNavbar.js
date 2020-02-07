@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { AuthUserContext } from '../../session';
 // reactstrap components
 import {
   Button,
@@ -16,8 +17,11 @@ import {
   Container,
   UncontrolledTooltip
 } from "reactstrap";
+import SignOutButton from '../../pages/signout/index.js';
+import SVLogo from 'assets/img/sv_logo.jpg';
 
-function IndexNavbar() {
+const NavBarPartial = ({authUser}) => {
+  console.log(authUser);
   const [navbarColor, setNavbarColor] = React.useState("navbar-transparent");
   const [collapseOpen, setCollapseOpen] = React.useState(false);
   React.useEffect(() => {
@@ -54,15 +58,20 @@ function IndexNavbar() {
         <Container>
           <div className="navbar-translate">
             <NavbarBrand
-              href="https://demos.creative-tim.com/now-ui-kit-react/#/index?ref=nukr-index-navbar"
+              href='/home'
               target="_blank"
               id="navbar-brand"
             >
-              Now UI Kit React
-            </NavbarBrand>
+              <img
+                alt="SVLogo"
+                className="logo"
+                src={SVLogo}
+              ></img>&nbsp;
+              SV Digital
+        </NavbarBrand>
             <UncontrolledTooltip target="#navbar-brand">
               Designed by Invision. Coded by Creative Tim
-            </UncontrolledTooltip>
+        </UncontrolledTooltip>
             <button
               className="navbar-toggler navbar-toggler"
               onClick={() => {
@@ -84,17 +93,84 @@ function IndexNavbar() {
           >
             <Nav navbar>
               <NavItem>
-                <NavLink
-                  href="#pablo"
-                  onClick={e => {
-                    e.preventDefault();
-                    document
-                      .getElementById("download-section")
-                      .scrollIntoView();
-                  }}
+                <NavLink href="/home">
+                  <p>Home</p>
+                </NavLink>
+              </NavItem>
+              <UncontrolledDropdown nav>
+                <DropdownToggle
+                  caret
+                  color="default"
+                  href="#about"
+                  nav
+                  onClick={e => e.preventDefault()}
                 >
-                  <i className="now-ui-icons arrows-1_cloud-download-93"></i>
-                  <p>Download</p>
+                  <p>About</p>
+                </DropdownToggle>
+                <DropdownMenu>
+                  <DropdownItem to="/index" tag={Link}>
+                    Introduction
+                  </DropdownItem>
+                  <DropdownItem
+                    to="/history"
+                    target="_blank"
+                  >
+                    History
+                  </DropdownItem>
+                  <DropdownItem
+                    to="/history"
+                    target="_blank"
+                  >
+                    Organization
+                  </DropdownItem>
+                  <DropdownItem
+                    to="/history"
+                    target="_blank"
+                  >
+                    Products Category in Sales
+                  </DropdownItem>
+                  <DropdownItem
+                    to="/history"
+                    target="_blank"
+                  >
+                    Direction
+                  </DropdownItem>
+                </DropdownMenu>
+              </UncontrolledDropdown>
+              <UncontrolledDropdown nav>
+                <DropdownToggle
+                  caret
+                  color="default"
+                  href="#pablo"
+                  nav
+                  onClick={e => e.preventDefault()}
+                >
+                  <p>Products</p>
+                </DropdownToggle>
+                <DropdownMenu>
+                  <DropdownItem to="/index" tag={Link}>
+                    <i className="now-ui-icons business_chart-pie-36 mr-1"></i>
+                    Sound and Vibration Analyzer
+                  </DropdownItem>
+                  <DropdownItem
+                    to="/index"
+                    target="_blank"
+                  >
+                    <i className="now-ui-icons design_bullet-list-67 mr-1"></i>
+                    Sensor
+                  </DropdownItem>
+                  <DropdownItem
+                    to="/index"
+                    target="_blank"
+                  >
+                    <i className="now-ui-icons design_bullet-list-67 mr-1"></i>
+                    Data Aquisition
+                  </DropdownItem>
+                </DropdownMenu>
+              </UncontrolledDropdown>
+              <NavItem>
+                <NavLink href="/research">
+                  <p>Research</p>
                 </NavLink>
               </NavItem>
               <UncontrolledDropdown nav>
@@ -105,82 +181,70 @@ function IndexNavbar() {
                   nav
                   onClick={e => e.preventDefault()}
                 >
-                  <i className="now-ui-icons design_app mr-1"></i>
-                  <p>Components</p>
+                  <p>Supports</p>
                 </DropdownToggle>
                 <DropdownMenu>
                   <DropdownItem to="/index" tag={Link}>
                     <i className="now-ui-icons business_chart-pie-36 mr-1"></i>
-                    All components
+                    Product Inquieries
                   </DropdownItem>
                   <DropdownItem
-                    href="https://demos.creative-tim.com/now-ui-kit-react/#/documentation/introduction?ref=nukr-index-navbar"
+                    to="/index"
                     target="_blank"
                   >
                     <i className="now-ui-icons design_bullet-list-67 mr-1"></i>
-                    Documentation
+                    Data
+                  </DropdownItem>
+                  <DropdownItem
+                    to="/index"
+                    target="_blank"
+                  >
+                    <i className="now-ui-icons design_bullet-list-67 mr-1"></i>
+                    A/S Request
                   </DropdownItem>
                 </DropdownMenu>
               </UncontrolledDropdown>
               <NavItem>
-                <Button
-                  className="nav-link btn-neutral"
-                  color="info"
-                  href="#pablo"
-                  id="upgrade-to-pro"
-                  onClick={e => e.preventDefault()}
-                >
-                  <i className="now-ui-icons arrows-1_share-66 mr-1"></i>
-                  <p>Upgrade to PRO</p>
-                </Button>
-                <UncontrolledTooltip target="#upgrade-to-pro">
-                  Cooming soon!
-                </UncontrolledTooltip>
+                <NavLink href="/research">
+                  <p>News</p>
+                </NavLink>
               </NavItem>
               <NavItem>
-                <NavLink
-                  href="https://twitter.com/CreativeTim?ref=creativetim"
-                  target="_blank"
-                  id="twitter-tooltip"
-                >
-                  <i className="fab fa-twitter"></i>
-                  <p className="d-lg-none d-xl-none">Twitter</p>
+                <NavLink href="/research">
+                  <p>Distributors</p>
                 </NavLink>
-                <UncontrolledTooltip target="#twitter-tooltip">
-                  Follow us on Twitter
-                </UncontrolledTooltip>
               </NavItem>
               <NavItem>
-                <NavLink
-                  href="https://www.facebook.com/CreativeTim?ref=creativetim"
-                  target="_blank"
-                  id="facebook-tooltip"
-                >
-                  <i className="fab fa-facebook-square"></i>
-                  <p className="d-lg-none d-xl-none">Facebook</p>
+                <NavLink href="/research">
+                  <p>Contact</p>
                 </NavLink>
-                <UncontrolledTooltip target="#facebook-tooltip">
-                  Like us on Facebook
-                </UncontrolledTooltip>
               </NavItem>
-              <NavItem>
-                <NavLink
-                  href="https://www.instagram.com/CreativeTimOfficial?ref=creativetim"
-                  target="_blank"
-                  id="instagram-tooltip"
-                >
-                  <i className="fab fa-instagram"></i>
-                  <p className="d-lg-none d-xl-none">Instagram</p>
-                </NavLink>
-                <UncontrolledTooltip target="#instagram-tooltip">
-                  Follow us on Instagram
-                </UncontrolledTooltip>
-              </NavItem>
+              {authUser ? <SignOutButton /> : (
+                <>
+                  <NavItem>
+                    <NavLink href="/login">
+                      <p>Log In</p>
+                    </NavLink>
+                  </NavItem>
+                  <NavItem>
+                    <NavLink href="/signup">
+                      <p>Sign Up</p>
+                    </NavLink>
+                  </NavItem>
+                </>)}
             </Nav>
           </Collapse>
         </Container>
       </Navbar>
-    </>
+    </>)
+};
+
+const IndexNavbar = () => {
+  // console.log('authUSer', authUser);
+  return (
+    <AuthUserContext.Consumer>
+      {authUser => (<NavBarPartial authUser={authUser} />)}
+    </AuthUserContext.Consumer>
   );
 }
 
