@@ -5,7 +5,7 @@ import { Button, Container } from "reactstrap";
 
 // core components
 
-function LandingPageHeader() {
+function LandingPageHeader({ title }) {
   let pageHeader = React.createRef();
 
   React.useEffect(() => {
@@ -33,7 +33,7 @@ function LandingPageHeader() {
         ></div>
         <div className="content-center">
           <Container>
-            <h1 className="title">This is our great company.</h1>
+            <h1 className="title">{title}</h1>
             <div className="text-center">
               <Button
                 className="btn-icon btn-round"

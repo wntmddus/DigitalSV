@@ -17,12 +17,20 @@
 */
 import React from "react";
 import ReactDOM from "react-dom";
+import { createStore, applyMiddleware } from 'redux';
+import { Provider } from 'react-redux';
+import logger from 'redux-logger'
+import rootReducer from "./store";
 
 import App from './app/index.js';
 import Firebase, { FirebaseContext } from './firebase';
 
+const store = createStore(rootReducer, applyMiddleware(logger));
+
 ReactDOM.render(
-  <FirebaseContext.Provider value={new Firebase()}>
-    <App />
-  </FirebaseContext.Provider>,
+  <Provider store={store}>
+    <FirebaseContext.Provider value={new Firebase()}>
+      <App />
+    </FirebaseContext.Provider>
+  </Provider>,
   document.getElementById("root"));

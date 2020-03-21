@@ -8,6 +8,7 @@ export const INTRODUCTION = '/introduction';
 export const HISTORY = '/history';
 export const PRODUCT_CATEGORY = '/product-category';
 export const PRODUCT = '/products';
+export const PROFILE = '/profile';
 export const ACCOUNT = '/account';
 export const ADMIN = '/admin';
 export const PASSWORD_FORGET = '/pw-forget';

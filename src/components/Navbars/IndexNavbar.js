@@ -19,9 +19,10 @@ import {
 } from "reactstrap";
 import SignOutButton from '../../pages/signout/index.js';
 import SVLogo from 'assets/img/sv_logo.jpg';
+import * as ROUTES from '../../constants/routes.js';
 
-const NavBarPartial = ({authUser}) => {
-  console.log(authUser);
+const NavBarPartial = ({ authUser }) => {
+  console.log('NavBar', authUser);
   const [navbarColor, setNavbarColor] = React.useState("navbar-transparent");
   const [collapseOpen, setCollapseOpen] = React.useState(false);
   React.useEffect(() => {
@@ -43,6 +44,7 @@ const NavBarPartial = ({authUser}) => {
       window.removeEventListener("scroll", updateNavbarColor);
     };
   });
+  
   return (
     <>
       {collapseOpen ? (
@@ -108,12 +110,12 @@ const NavBarPartial = ({authUser}) => {
                   <p>About</p>
                 </DropdownToggle>
                 <DropdownMenu>
-                  <DropdownItem to="/index" tag={Link}>
+                  <DropdownItem to={ROUTES.INTRODUCTION} tag={Link}>
                     Introduction
                   </DropdownItem>
                   <DropdownItem
-                    to="/history"
-                    target="_blank"
+                    to={ROUTES.HISTORY}
+                    tag={Link}
                   >
                     History
                   </DropdownItem>
